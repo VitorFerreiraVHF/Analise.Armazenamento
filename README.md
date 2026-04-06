@@ -1,13 +1,14 @@
-# Auditoria de Disco PowerShell
+# Ferramentas de Auditoria de Armazenamento PowerShell
 
-Este projeto contém um script PowerShell desenvolvido para realizar uma auditoria detalhada do uso de armazenamento em unidades de disco. Ele ajuda a identificar rapidamente quais aplicativos instalados e quais pastas na raiz do drive estão consumindo mais espaço.
+Este repositório contém scripts PowerShell desenvolvidos para realizar auditorias detalhadas do uso de armazenamento. Eles permitem identificar rapidamente quais aplicativos e pastas estão consumindo mais espaço em disco.
 
 ## 🚀 Funcionalidades
 
-- **Levantamento de Aplicativos:** Varre os registros do Windows (HKLM, HKCU e WOW6432Node) para listar softwares instalados e seus tamanhos estimados.
-- **Cálculo de Pastas:** Analisa recursivamente todas as pastas na raiz do drive selecionado para determinar o tamanho total ocupado.
+- **Auditoria Completa (`Auditoria-Disco.ps1`):** Varre os registros do Windows (HKLM, HKCU e WOW6432Node) para listar softwares e analisa as pastas na raiz de um drive (ex: C:\).
+- **Análise de Subpastas (`Analisa-SubPastas.ps1`):** Foca em um diretório específico para listar o tamanho de cada subpasta contida nele, ideal para limpar diretórios de projetos ou downloads.
 - **Ordenação Automática:** Exibe os resultados do maior para o menor (Descendente), facilitando a identificação de "vilões" de armazenamento.
-- **Saída Visual:** Utiliza cores no terminal para diferenciar as etapas do processo e facilitar a leitura das tabelas.
+- **Conversão de Unidades:** Converte automaticamente bytes para GB para facilitar a leitura.
+- **Saída Visual:** Interface colorida no terminal para melhor acompanhamento do progresso.
 
 ## 📋 Pré-requisitos
 
@@ -20,12 +21,21 @@ Este projeto contém um script PowerShell desenvolvido para realizar uma auditor
 2. Navegue até o diretório do projeto.
 3. Execute o script:
 
+### Auditoria Geral do Drive
+
 ```powershell
-# Para analisar o drive padrão (C:\)
+# Analisa o drive padrão (C:\) - Apps instalados + Pastas da Raiz
 .\Auditoria-Disco.ps1
 
-# Para analisar um drive específico
+# Analisa um drive específico
 .\Auditoria-Disco.ps1 -Drive "D:\"
+```
+
+### Análise de Subpastas Específicas
+
+```powershell
+# Analisa o tamanho de cada subpasta dentro de um caminho específico
+.\Analisa-SubPastas.ps1 -Path "C:\Users\NomeUsuario\Documents"
 ```
 
 ## 🛠️ Detalhes Técnicos
